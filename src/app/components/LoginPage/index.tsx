@@ -17,8 +17,27 @@ function TopPage() {
   const [text, setText] = useState<string>('')
 
   return (
-    <div>ge0j
-      pa
+    <div>
+      {actions?.docs.map(action => {
+        return (
+          <div>
+            <Typography>{action.data().name}</Typography>
+            <Input
+              value={text}
+              onChange={e => {
+                setText(e.target.value)
+              }}
+            ></Input>
+            <Button
+              onClick={() => {
+                console.log('log')
+              }}
+            >
+              記録
+            </Button>
+          </div>
+        )
+      })}
     </div>
   )
 }
