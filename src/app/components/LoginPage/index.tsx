@@ -4,16 +4,15 @@ import firebase from 'firebase'
 import { useCollection } from 'react-firebase-hooks/firestore'
 import { useAuthState } from 'react-firebase-hooks/auth'
 
-import { initializeFirebase } from '../../service/firebase'
+import { getAuth } from '../../service/firebase'
 import 'firebase/firestore'
 
 const userId = 'OegHtdhSLTtslN2L3YJn'
 
-initializeFirebase()
-const fdb = firebase.firestore()
+const fdb = getFirestore()
 
 function TopPage() {
-  const [user, loading, error] = useAuthState(firebase.auth())
+  const [user, loading, error] = useAuthState(getAuth())
   const [text, setText] = useState<string>('')
 
   return (

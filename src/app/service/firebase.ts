@@ -16,3 +16,13 @@ export const initializeFirebase = () => {
     firebase.initializeApp(firebaseConfig)
   }
 }
+
+export const getAuth = () => {
+  initializeFirebase()
+  return firebase.auth()
+}
+
+export const getFirestore = () => {
+  initializeFirebase()
+  return firebase.firestore()
+}
