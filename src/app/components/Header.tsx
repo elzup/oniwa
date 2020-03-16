@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import LoginButton from './LoginButton'
 
 export default ({ pathname }: { pathname?: unknown }) => (
   <header>
@@ -8,5 +9,6 @@ export default ({ pathname }: { pathname?: unknown }) => (
     <Link href="/about">
       <a className={pathname === '/about' ? 'is-active' : ''}>About</a>
     </Link>
+    <LoginButton />
   </header>
 )

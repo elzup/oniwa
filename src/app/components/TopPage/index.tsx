@@ -1,25 +1,22 @@
 import { useState } from 'react'
 import { Button, Input, Typography } from '@material-ui/core'
-import firebase from 'firebase'
+import * as firebase from 'firebase'
 import { useCollection } from 'react-firebase-hooks/firestore'
 import { useAuthState } from 'react-firebase-hooks/auth'
 
-import { initializeFirebase } from '../../service/firebase'
-import 'firebase/firestore'
+import { getFirestore } from '../../service/firebase'
+import App from '../App'
 
-const userId = 'OegHtdhSLTtslN2L3YJn'
-
-initializeFirebase()
-const fdb = firebase.firestore()
+const fdb = getFirestore()
 
 function TopPage() {
   const [user, loading, error] = useAuthState(firebase.auth())
   const [text, setText] = useState<string>('')
 
   return (
-    <div>ge0j
-      pa
-    </div>
+    <App>
+      <div>ge0j pa</div>
+    </App>
   )
 }
 export default TopPage

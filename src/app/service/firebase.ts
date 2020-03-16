@@ -1,4 +1,6 @@
-import firebase from 'firebase/app'
+import * as firebase from 'firebase/app'
+import 'firebase/auth'
+import 'firebase/firestore'
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -11,18 +13,28 @@ const firebaseConfig = {
   measumentId: process.env.FIREBASE_MEASUREMENT_ID,
 }
 
-export const initializeFirebase = () => {
+const init = () => {
   if (firebase.apps.length === 0) {
     firebase.initializeApp(firebaseConfig)
   }
 }
 
 export const getAuth = () => {
-  initializeFirebase()
-  return firebase.auth()
+  init()
+
+  const provider = new firebase.auth.GoogleAuthProvider()
+  const auth = firebase.auth()
+
+  auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+
+  return {
+    auth,
+    login: () => auth.signInWithPopup(provider),
+    logout: auth.signOut,
+  }
 }
 
 export const getFirestore = () => {
-  initializeFirebase()
+  init()
   return firebase.firestore()
 }
